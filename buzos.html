@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Buzos - STUDIO DESKD</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="logo"><h1>STUDIO DESKD</h1></div>
+      <nav class="nav">
+        <a href="index.html" class="nav-link">Inicio</a>
+        <a href="camisetas.html" class="nav-link">Camisetas</a>
+        <a href="pantalones.html" class="nav-link">Pantalones</a>
+        <a href="buzos.html" class="nav-link active">Buzos</a>
+        <a href="accesorios.html" class="nav-link">Accesorios</a>
+      </nav>
+      <button class="cart-btn" id="cartBtn">🛒 Carrito (<span id="cartCount">0</span>)</button>
+    </div>
+  </header>
+
+  <section class="catalog-section">
+    <div class="container">
+      <h2 class="section-title">Buzos</h2>
+      <div class="products-grid" id="buzosGrid"></div>
+    </div>
+  </section>
+
+  <script src="js/Producto.js"></script>
+  <script src="js/Carrito.js"></script>
+  <script src="js/Catalogo.js"></script>
+  <script src="js/UI.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

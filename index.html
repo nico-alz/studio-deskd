@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STUDIO DESKD - Tienda de Ropa</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="logo">
+        <h1>STUDIO DESKD</h1>
+      </div>
+      <nav class="nav">
+        <a href="index.html" class="nav-link active">Inicio</a>
+        <a href="camisetas.html" class="nav-link">Camisetas</a>
+        <a href="pantalones.html" class="nav-link">Pantalones</a>
+        <a href="buzos.html" class="nav-link">Buzos</a>
+        <a href="accesorios.html" class="nav-link">Accesorios</a>
+        <a href="#login" class="nav-link">Iniciar sesión</a>
+      </nav>
+      <button class="cart-btn" id="cartBtn">
+        🛒 Carrito (<span id="cartCount">0</span>)
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="brand-presentation">
+          <div class="brand-text">
+            <h2>Bienvenido a STUDIO DESKD</h2>
+            <p class="brand-tagline">Moda Urbana. Estilo Auténtico.</p>
+            <p class="brand-description">
+              STUDIO DESKD es tu destino para la moda urbana contemporánea. Combinamos diseño innovador con calidad premium para crear prendas que reflejan tu personalidad única.
+            </p>
+            <p class="brand-description">
+              Nuestra colección celebra la cultura streetwear con un toque moderno, ofreciendo prendas versátiles que se adaptan a tu estilo de vida urbano.
+            </p>
+            <div class="hero-cta-buttons">
+              <a href="#registro" class="btn btn-primary">Registrarse</a>
+              <a href="#contacto" class="btn btn-secondary">Contacto</a>
+            </div>
+          </div>
+          <div class="brand-image">
+            <img src="/brand-showcase.jpg" alt="STUDIO DESKD Fashion" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección Iniciar Sesión -->
+  <section id="login" class="form-section">
+    <div class="container">
+      <h2 class="section-title">Iniciar Sesión</h2>
+      <form class="form" id="loginForm">
+        <div class="form-group">
+          <label for="loginCorreo">Correo Electrónico</label>
+          <input type="email" id="loginCorreo" required />
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Contraseña</label>
+          <input type="password" id="loginPassword" required />
+        </div>
+        <button type="submit" class="btn btn-primary">Ingresar</button>
+        <p class="form-note">
+          <!-- BACKEND CONNECTION POINT: POST /api/usuarios/login -->
+        </p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Sección Registro -->
+  <section id="registro" class="form-section">
+    <div class="container">
+      <h2 class="section-title">Registro de Usuario</h2>
+      <form class="form" id="registroForm">
+        <div class="form-group">
+          <label for="regNombre">Nombre Completo</label>
+          <input type="text" id="regNombre" required />
+        </div>
+        <div class="form-group">
+          <label for="regCorreo">Correo Electrónico</label>
+          <input type="email" id="regCorreo" required />
+        </div>
+        <div class="form-group">
+          <label for="regPassword">Contraseña</label>
+          <input type="password" id="regPassword" required />
+        </div>
+        <button type="submit" class="btn btn-primary">Registrarse</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Sección Contacto -->
+  <section id="contacto" class="form-section">
+    <div class="container">
+      <h2 class="section-title">Contacto</h2>
+      <form class="form" id="contactoForm">
+        <div class="form-group">
+          <label for="contNombre">Nombre</label>
+          <input type="text" id="contNombre" required />
+        </div>
+        <div class="form-group">
+          <label for="contCorreo">Correo Electrónico</label>
+          <input type="email" id="contCorreo" required />
+        </div>
+        <div class="form-group">
+          <label for="contMensaje">Mensaje</label>
+          <textarea id="contMensaje" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>STUDIO DESKD</h3>
+          <p>Tu tienda de ropa urbana de confianza</p>
+        </div>
+        <div class="footer-section">
+          <h4>Contacto</h4>
+          <p>Email: info@studiodeskd.com</p>
+          <p>Teléfono: +1 234 567 890</p>
+          <p>Dirección: Calle Principal 123</p>
+        </div>
+        <div class="footer-section">
+          <h4>Enlaces Rápidos</h4>
+          <a href="camisetas.html">Camisetas</a>
+          <a href="pantalones.html">Pantalones</a>
+          <a href="buzos.html">Buzos</a>
+          <a href="accesorios.html">Accesorios</a>
+        </div>
+        <div class="footer-section">
+          <h4>Síguenos</h4>
+          <div class="social-links">
+            <a href="#" class="social-link">Facebook</a>
+            <a href="#" class="social-link">Instagram</a>
+            <a href="#" class="social-link">Twitter</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 STUDIO DESKD. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/Producto.js"></script>
+  <script src="js/Carrito.js"></script>
+  <script src="js/Catalogo.js"></script>
+  <script src="js/UI.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
