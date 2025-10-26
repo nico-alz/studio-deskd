@@ -1,165 +1,258 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>STUDIO DESKD - Tienda de Ropa</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STUDIO DESKD - Moda Urbana Premium</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-  <!-- Header -->
-  <header class="header">
-    <div class="container">
-      <div class="logo">
-        <h1>STUDIO DESKD</h1>
-      </div>
-      <nav class="nav">
-        <a href="index.html" class="nav-link active">Inicio</a>
-        <a href="camisetas.html" class="nav-link">Camisetas</a>
-        <a href="pantalones.html" class="nav-link">Pantalones</a>
-        <a href="buzos.html" class="nav-link">Buzos</a>
-        <a href="accesorios.html" class="nav-link">Accesorios</a>
-        <a href="#login" class="nav-link">Iniciar sesión</a>
-      </nav>
-      <button class="cart-btn" id="cartBtn">
-        🛒 Carrito (<span id="cartCount">0</span>)
-      </button>
-    </div>
-  </header>
-
-  <!-- Hero Section -->
-  <section id="home" class="hero">
-    <div class="container">
-      <div class="hero-content">
-        <div class="brand-presentation">
-          <div class="brand-text">
-            <h2>Bienvenido a STUDIO DESKD</h2>
-            <p class="brand-tagline">Moda Urbana. Estilo Auténtico.</p>
-            <p class="brand-description">
-              STUDIO DESKD es tu destino para la moda urbana contemporánea. Combinamos diseño innovador con calidad premium para crear prendas que reflejan tu personalidad única.
-            </p>
-            <p class="brand-description">
-              Nuestra colección celebra la cultura streetwear con un toque moderno, ofreciendo prendas versátiles que se adaptan a tu estilo de vida urbano.
-            </p>
-            <div class="hero-cta-buttons">
-              <a href="#registro" class="btn btn-primary">Registrarse</a>
-              <a href="#contacto" class="btn btn-secondary">Contacto</a>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>STUDIO DESKD</h1>
+                <span class="logo-tagline">Urban Fashion</span>
             </div>
-          </div>
-          <div class="brand-image">
-            <img src="/brand-showcase.jpg" alt="STUDIO DESKD Fashion" />
-          </div>
+            <nav class="nav">
+                <a href="#home" class="nav-link active" data-section="home">Inicio</a>
+                <a href="#camisetas" class="nav-link" data-section="camisetas">Camisetas</a>
+                <a href="#pantalones" class="nav-link" data-section="pantalones">Pantalones</a>
+                <a href="#buzos" class="nav-link" data-section="buzos">Buzos</a>
+                <a href="#accesorios" class="nav-link" data-section="accesorios">Accesorios</a>
+                <a href="#contacto" class="nav-link" data-section="contacto">Contacto</a>
+            </nav>
+            <div class="header-actions">
+                <button class="icon-btn" id="loginBtn" title="Iniciar Sesión">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </button>
+                <button class="cart-btn" id="cartBtn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </header>
 
-  <!-- Sección Iniciar Sesión -->
-  <section id="login" class="form-section">
-    <div class="container">
-      <h2 class="section-title">Iniciar Sesión</h2>
-      <form class="form" id="loginForm">
-        <div class="form-group">
-          <label for="loginCorreo">Correo Electrónico</label>
-          <input type="email" id="loginCorreo" required />
+    <!-- Hero Section -->
+    <section id="home" class="hero section-visible">
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h2 class="hero-title">Moda Urbana. Estilo Auténtico.</h2>
+                <p class="hero-subtitle">Descubre la nueva colección de STUDIO DESKD</p>
+                <p class="hero-description">
+                    Combinamos diseño innovador con calidad premium para crear prendas 
+                    que reflejan tu personalidad única. Desde camisetas statement hasta 
+                    accesorios exclusivos, cada pieza está diseñada para destacar.
+                </p>
+                <div class="hero-cta">
+                    <button class="btn btn-primary" data-section="camisetas">Explorar Colección</button>
+                    <button class="btn btn-secondary" id="heroRegisterBtn">Crear Cuenta</button>
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-          <label for="loginPassword">Contraseña</label>
-          <input type="password" id="loginPassword" required />
-        </div>
-        <button type="submit" class="btn btn-primary">Ingresar</button>
-        <p class="form-note">
-          <!-- BACKEND CONNECTION POINT: POST /api/usuarios/login -->
-        </p>
-      </form>
-    </div>
-  </section>
+    </section>
 
-  <!-- Sección Registro -->
-  <section id="registro" class="form-section">
-    <div class="container">
-      <h2 class="section-title">Registro de Usuario</h2>
-      <form class="form" id="registroForm">
-        <div class="form-group">
-          <label for="regNombre">Nombre Completo</label>
-          <input type="text" id="regNombre" required />
+    <!-- Sección Camisetas -->
+    <section id="camisetas" class="catalog-section section-hidden">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Camisetas</h2>
+                <p class="section-description">Camisetas urbanas de alta calidad con diseños exclusivos</p>
+            </div>
+            <div class="products-grid" id="camisetasGrid"></div>
         </div>
-        <div class="form-group">
-          <label for="regCorreo">Correo Electrónico</label>
-          <input type="email" id="regCorreo" required />
-        </div>
-        <div class="form-group">
-          <label for="regPassword">Contraseña</label>
-          <input type="password" id="regPassword" required />
-        </div>
-        <button type="submit" class="btn btn-primary">Registrarse</button>
-      </form>
-    </div>
-  </section>
+    </section>
 
-  <!-- Sección Contacto -->
-  <section id="contacto" class="form-section">
-    <div class="container">
-      <h2 class="section-title">Contacto</h2>
-      <form class="form" id="contactoForm">
-        <div class="form-group">
-          <label for="contNombre">Nombre</label>
-          <input type="text" id="contNombre" required />
+    <!-- Sección Pantalones -->
+    <section id="pantalones" class="catalog-section section-hidden">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Pantalones</h2>
+                <p class="section-description">Pantalones versátiles para tu estilo urbano</p>
+            </div>
+            <div class="products-grid" id="pantalonesGrid"></div>
         </div>
-        <div class="form-group">
-          <label for="contCorreo">Correo Electrónico</label>
-          <input type="email" id="contCorreo" required />
-        </div>
-        <div class="form-group">
-          <label for="contMensaje">Mensaje</label>
-          <textarea id="contMensaje" rows="5" required></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
-      </form>
-    </div>
-  </section>
+    </section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-section">
-          <h3>STUDIO DESKD</h3>
-          <p>Tu tienda de ropa urbana de confianza</p>
+    <!-- Sección Buzos -->
+    <section id="buzos" class="catalog-section section-hidden">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Buzos</h2>
+                <p class="section-description">Buzos cómodos y con estilo para cualquier ocasión</p>
+            </div>
+            <div class="products-grid" id="buzosGrid"></div>
         </div>
-        <div class="footer-section">
-          <h4>Contacto</h4>
-          <p>Email: info@studiodeskd.com</p>
-          <p>Teléfono: +1 234 567 890</p>
-          <p>Dirección: Calle Principal 123</p>
-        </div>
-        <div class="footer-section">
-          <h4>Enlaces Rápidos</h4>
-          <a href="camisetas.html">Camisetas</a>
-          <a href="pantalones.html">Pantalones</a>
-          <a href="buzos.html">Buzos</a>
-          <a href="accesorios.html">Accesorios</a>
-        </div>
-        <div class="footer-section">
-          <h4>Síguenos</h4>
-          <div class="social-links">
-            <a href="#" class="social-link">Facebook</a>
-            <a href="#" class="social-link">Instagram</a>
-            <a href="#" class="social-link">Twitter</a>
-          </div>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2025 STUDIO DESKD. Todos los derechos reservados.</p>
-      </div>
-    </div>
-  </footer>
+    </section>
 
-  <!-- Scripts -->
-  <script src="js/Producto.js"></script>
-  <script src="js/Carrito.js"></script>
-  <script src="js/Catalogo.js"></script>
-  <script src="js/UI.js"></script>
-  <script src="js/app.js"></script>
+    <!-- Sección Accesorios -->
+    <section id="accesorios" class="catalog-section section-hidden">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Accesorios</h2>
+                <p class="section-description">Complementa tu look con nuestros accesorios premium</p>
+            </div>
+            <div class="products-grid" id="accesoriosGrid"></div>
+        </div>
+    </section>
+
+    <!-- Sección Contacto -->
+    <section id="contacto" class="form-section section-hidden">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Contacto</h2>
+                <p class="section-description">¿Tienes alguna pregunta? Estamos aquí para ayudarte</p>
+            </div>
+            <form class="form contact-form" id="contactoForm">
+                <div class="form-group">
+                    <label for="contNombre">Nombre Completo</label>
+                    <input type="text" id="contNombre" placeholder="Tu nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="contCorreo">Correo Electrónico</label>
+                    <input type="email" id="contCorreo" placeholder="tu@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="contMensaje">Mensaje</label>
+                    <textarea id="contMensaje" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Modal de Login -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content modal-auth">
+            <div class="modal-header">
+                <h2>Iniciar Sesión</h2>
+                <button class="close-btn" id="closeLogin">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form class="form" id="loginForm">
+                    <div class="form-group">
+                        <label for="loginCorreo">Correo Electrónico</label>
+                        <input type="email" id="loginCorreo" placeholder="tu@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Contraseña</label>
+                        <input type="password" id="loginPassword" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Iniciar Sesión</button>
+                    <p class="form-footer">
+                        ¿No tienes cuenta? <a href="#" id="switchToRegister">Regístrate aquí</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Registro -->
+    <div id="registroModal" class="modal">
+        <div class="modal-content modal-auth">
+            <div class="modal-header">
+                <h2>Crear Cuenta</h2>
+                <button class="close-btn" id="closeRegistro">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form class="form" id="registroForm">
+                    <div class="form-group">
+                        <label for="regNombre">Nombre Completo</label>
+                        <input type="text" id="regNombre" placeholder="Tu nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="regCorreo">Correo Electrónico</label>
+                        <input type="email" id="regCorreo" placeholder="tu@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="regPassword">Contraseña</label>
+                        <input type="password" id="regPassword" placeholder="••••••••" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="regPasswordConfirm">Confirmar Contraseña</label>
+                        <input type="password" id="regPasswordConfirm" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Crear Cuenta</button>
+                    <p class="form-footer">
+                        ¿Ya tienes cuenta? <a href="#" id="switchToLogin">Inicia sesión aquí</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal del Carrito -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content modal-cart">
+            <div class="modal-header">
+                <h2>Tu Carrito</h2>
+                <button class="close-btn" id="closeCart">&times;</button>
+            </div>
+            <div class="modal-body" id="cartItems">
+                <!-- Los items del carrito se cargarán aquí dinámicamente -->
+            </div>
+            <div class="modal-footer">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <strong>$<span id="cartTotal">0.00</span></strong>
+                </div>
+                <button class="btn btn-primary btn-block" id="checkoutBtn">Proceder al Pago</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>STUDIO DESKD</h3>
+                    <p class="footer-tagline">Moda Urbana Premium</p>
+                    <p>Tu destino para la moda urbana contemporánea con estilo auténtico.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <p>📧 info@studiodeskd.com</p>
+                    <p>📱 +1 234 567 890</p>
+                    <p>📍 Calle Principal 123</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Categorías</h4>
+                    <a href="#camisetas" data-section="camisetas">Camisetas</a>
+                    <a href="#pantalones" data-section="pantalones">Pantalones</a>
+                    <a href="#buzos" data-section="buzos">Buzos</a>
+                    <a href="#accesorios" data-section="accesorios">Accesorios</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Síguenos</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link">Facebook</a>
+                        <a href="#" class="social-link">Instagram</a>
+                        <a href="#" class="social-link">Twitter</a>
+                        <a href="#" class="social-link">TikTok</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 STUDIO DESKD. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script type="module" src="js/Producto.js"></script>
+    <script type="module" src="js/Carrito.js"></script>
+    <script type="module" src="js/Catalogo.js"></script>
+    <script type="module" src="js/UI.js"></script>
+    <script type="module" src="js/app.js"></script>
 </body>
 </html>

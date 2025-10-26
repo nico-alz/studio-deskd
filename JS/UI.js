@@ -6,6 +6,7 @@ export class UI {
   constructor(catalogo, carrito) {
     this.catalogo = catalogo
     this.carrito = carrito
+    this.seccionActual = "home"
     this.inicializarEventos()
   }
 
@@ -16,49 +17,107 @@ export class UI {
     // Renderizar productos
     this.renderizarProductos()
 
+    // Eventos de navegación
+    this.inicializarNavegacion()
+
     // Eventos del carrito
     document.getElementById("cartBtn").addEventListener("click", () => this.mostrarCarrito())
     document.getElementById("closeCart").addEventListener("click", () => this.ocultarCarrito())
     document.getElementById("checkoutBtn").addEventListener("click", () => this.procesarCheckout())
-    // Abrir modales
-      document.getElementById("openRegistro").addEventListener("click", () => {
-      document.getElementById("registroModal").classList.add("active")
-      })
 
-      document.getElementById("openLogin").addEventListener("click", () => {
-      document.getElementById("loginModal").classList.add("active")
-      })
+    // Eventos de modales de autenticación
+    document.getElementById("loginBtn").addEventListener("click", () => this.mostrarModal("loginModal"))
+    document.getElementById("heroRegisterBtn").addEventListener("click", () => this.mostrarModal("registroModal"))
+    document.getElementById("closeLogin").addEventListener("click", () => this.ocultarModal("loginModal"))
+    document.getElementById("closeRegistro").addEventListener("click", () => this.ocultarModal("registroModal"))
 
-    // Cerrar modales
-      document.getElementById("closeRegistro").addEventListener("click", () => {
-     document.getElementById("registroModal").classList.remove("active")
-      })
-
-      document.getElementById("closeLogin").addEventListener("click", () => {
-      document.getElementById("loginModal").classList.remove("active")
+    // Cambiar entre login y registro
+    document.getElementById("switchToRegister").addEventListener("click", (e) => {
+      e.preventDefault()
+      this.ocultarModal("loginModal")
+      this.mostrarModal("registroModal")
+    })
+    document.getElementById("switchToLogin").addEventListener("click", (e) => {
+      e.preventDefault()
+      this.ocultarModal("registroModal")
+      this.mostrarModal("loginModal")
     })
 
-    // Cerrar modal al hacer clic fuera
-    document.getElementById("cartModal").addEventListener("click", (e) => {
-      if (e.target.id === "cartModal") {
-        this.ocultarCarrito()
-      }
+    // Cerrar modales al hacer clic fuera
+    document.querySelectorAll(".modal").forEach((modal) => {
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          this.ocultarModal(modal.id)
+        }
+      })
     })
 
     // Eventos de formularios
     document.getElementById("registroForm").addEventListener("submit", (e) => this.manejarRegistro(e))
+    document.getElementById("loginForm").addEventListener("submit", (e) => this.manejarLogin(e))
     document.getElementById("contactoForm").addEventListener("submit", (e) => this.manejarContacto(e))
+  }
 
-    // Navegación suave
-    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-      anchor.addEventListener("click", (e) => {
+  /**
+   * Inicializa la navegación entre secciones
+   */
+  inicializarNavegacion() {
+    // Enlaces del menú principal
+    document.querySelectorAll(".nav-link[data-section]").forEach((link) => {
+      link.addEventListener("click", (e) => {
         e.preventDefault()
-        const target = document.querySelector(anchor.getAttribute("href"))
-        if (target) {
-          target.scrollIntoView({ behavior: "smooth" })
-        }
+        const seccion = link.dataset.section
+        this.navegarASeccion(seccion)
       })
     })
+
+    // Botón del hero para explorar colección
+    document.querySelector(".hero-cta .btn-primary").addEventListener("click", (e) => {
+      e.preventDefault()
+      this.navegarASeccion("camisetas")
+    })
+
+    // Enlaces del footer
+    document.querySelectorAll(".footer-section a[data-section]").forEach((link) => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault()
+        const seccion = link.dataset.section
+        this.navegarASeccion(seccion)
+        window.scrollTo({ top: 0, behavior: "smooth" })
+      })
+    })
+  }
+
+  /**
+   * Navega a una sección específica
+   * @param {string} seccion - ID de la sección
+   */
+  navegarASeccion(seccion) {
+    // Ocultar todas las secciones
+    document.querySelectorAll(".hero, .catalog-section, .form-section").forEach((section) => {
+      section.classList.remove("section-visible")
+      section.classList.add("section-hidden")
+    })
+
+    // Mostrar la sección seleccionada
+    const seccionElement = document.getElementById(seccion)
+    if (seccionElement) {
+      seccionElement.classList.remove("section-hidden")
+      seccionElement.classList.add("section-visible")
+    }
+
+    // Actualizar enlaces activos
+    document.querySelectorAll(".nav-link").forEach((link) => {
+      link.classList.remove("active")
+      if (link.dataset.section === seccion) {
+        link.classList.add("active")
+      }
+    })
+
+    this.seccionActual = seccion
+
+    // Scroll suave al inicio
+    window.scrollTo({ top: 0, behavior: "smooth" })
   }
 
   /**
@@ -120,6 +179,22 @@ export class UI {
   }
 
   /**
+   * Muestra un modal
+   * @param {string} modalId - ID del modal
+   */
+  mostrarModal(modalId) {
+    document.getElementById(modalId).classList.add("active")
+  }
+
+  /**
+   * Oculta un modal
+   * @param {string} modalId - ID del modal
+   */
+  ocultarModal(modalId) {
+    document.getElementById(modalId).classList.remove("active")
+  }
+
+  /**
    * Muestra el modal del carrito
    */
   mostrarCarrito() {
@@ -128,7 +203,7 @@ export class UI {
     const items = this.carrito.obtenerItems()
 
     if (items.length === 0) {
-      cartItems.innerHTML = '<div class="cart-empty">Tu carrito está vacío</div>'
+      cartItems.innerHTML = '<div class="cart-empty">Tu carrito está vacío 🛒</div>'
     } else {
       cartItems.innerHTML = items
         .map(
@@ -185,7 +260,7 @@ export class UI {
     // Endpoint: POST /api/pedidos/crear
 
     alert(
-      `Pedido procesado!\nTotal: $${pedido.total.toFixed(2)}\n\nEn producción, esto se conectará con el sistema de pagos.`,
+      `¡Pedido procesado exitosamente!\n\nTotal: $${pedido.total.toFixed(2)}\nProductos: ${pedido.items.length}\n\nEn producción, esto se conectará con el sistema de pagos y Java + PHP + MySQL.`,
     )
 
     // Vaciar carrito después del checkout
@@ -213,6 +288,12 @@ export class UI {
     const nombre = document.getElementById("regNombre").value
     const correo = document.getElementById("regCorreo").value
     const password = document.getElementById("regPassword").value
+    const passwordConfirm = document.getElementById("regPasswordConfirm").value
+
+    if (password !== passwordConfirm) {
+      alert("Las contraseñas no coinciden")
+      return
+    }
 
     // BACKEND CONNECTION POINT:
     // Aquí se enviará la información al backend para crear el usuario
@@ -220,9 +301,36 @@ export class UI {
     // Body: { nombre, correo, password }
 
     console.log("Datos de registro:", { nombre, correo, password })
-    alert("Registro exitoso!\n\nEn producción, esto creará tu cuenta en la base de datos.")
+    alert(
+      `¡Registro exitoso!\n\nBienvenido ${nombre}!\n\nEn producción, esto creará tu cuenta en la base de datos con Java + PHP + MySQL.`,
+    )
 
     e.target.reset()
+    this.ocultarModal("registroModal")
+  }
+
+  /**
+   * Maneja el envío del formulario de login
+   * @param {Event} e - Evento del formulario
+   */
+  manejarLogin(e) {
+    e.preventDefault()
+
+    const correo = document.getElementById("loginCorreo").value
+    const password = document.getElementById("loginPassword").value
+
+    // BACKEND CONNECTION POINT:
+    // Aquí se enviará la información al backend para autenticar
+    // Endpoint: POST /api/usuarios/login
+    // Body: { correo, password }
+
+    console.log("Datos de login:", { correo, password })
+    alert(
+      `¡Inicio de sesión exitoso!\n\nBienvenido de nuevo!\n\nEn producción, esto autenticará tu cuenta con Java + PHP + MySQL.`,
+    )
+
+    e.target.reset()
+    this.ocultarModal("loginModal")
   }
 
   /**
@@ -242,7 +350,9 @@ export class UI {
     // Body: { nombre, correo, mensaje }
 
     console.log("Mensaje de contacto:", { nombre, correo, mensaje })
-    alert("Mensaje enviado!\n\nEn producción, esto enviará tu mensaje al equipo de soporte.")
+    alert(
+      `¡Mensaje enviado exitosamente!\n\nGracias ${nombre}, te responderemos pronto.\n\nEn producción, esto enviará tu mensaje al equipo de soporte con Java + PHP + MySQL.`,
+    )
 
     e.target.reset()
   }

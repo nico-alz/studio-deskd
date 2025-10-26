@@ -17,12 +17,12 @@ export class Catalogo {
    * Endpoint esperado: GET /api/productos
    */
   inicializarProductos() {
-    // Camisetas
+    // Camisetas (6 productos)
     this.productos.push(
       new Producto(
         1,
         "Camiseta Urban Black",
-        "Camiseta negra de algodón premium con diseño urbano",
+        "Camiseta negra de algodón premium con diseño urbano exclusivo",
         29.99,
         "/black-urban-t-shirt.jpg",
         "camisetas",
@@ -30,7 +30,7 @@ export class Catalogo {
       new Producto(
         2,
         "Camiseta Purple Wave",
-        "Camiseta morada con estampado de onda",
+        "Camiseta morada con estampado de onda artístico",
         34.99,
         "/purple-wave-t-shirt.jpg",
         "camisetas",
@@ -46,7 +46,7 @@ export class Catalogo {
       new Producto(
         4,
         "Camiseta Graphic Tee",
-        "Camiseta con gráfico artístico exclusivo",
+        "Camiseta con gráfico artístico exclusivo de la colección",
         32.99,
         "/graphic-art-t-shirt.jpg",
         "camisetas",
@@ -54,7 +54,7 @@ export class Catalogo {
       new Producto(
         5,
         "Camiseta Oversized",
-        "Camiseta oversized de estilo streetwear",
+        "Camiseta oversized de estilo streetwear premium",
         36.99,
         "/oversized-streetwear-t-shirt.jpg",
         "camisetas",
@@ -62,19 +62,19 @@ export class Catalogo {
       new Producto(
         6,
         "Camiseta Vintage",
-        "Camiseta con efecto vintage desgastado",
+        "Camiseta con efecto vintage desgastado auténtico",
         31.99,
         "/vintage-distressed-t-shirt.jpg",
         "camisetas",
       ),
     )
 
-    // Pantalones
+    // Pantalones (6 productos)
     this.productos.push(
       new Producto(
         7,
         "Pantalón Cargo Black",
-        "Pantalón cargo negro con múltiples bolsillos",
+        "Pantalón cargo negro con múltiples bolsillos funcionales",
         59.99,
         "/black-cargo-pants.png",
         "pantalones",
@@ -82,7 +82,7 @@ export class Catalogo {
       new Producto(
         8,
         "Jeans Slim Fit",
-        "Jeans ajustados de mezclilla premium",
+        "Jeans ajustados de mezclilla premium importada",
         64.99,
         "/slim-fit-jeans.png",
         "pantalones",
@@ -90,7 +90,7 @@ export class Catalogo {
       new Producto(
         9,
         "Pantalón Jogger",
-        "Pantalón jogger cómodo para uso diario",
+        "Pantalón jogger cómodo para uso diario urbano",
         49.99,
         "/jogger-pants.png",
         "pantalones",
@@ -98,7 +98,7 @@ export class Catalogo {
       new Producto(
         10,
         "Pantalón Wide Leg",
-        "Pantalón de pierna ancha estilo urbano",
+        "Pantalón de pierna ancha estilo urbano contemporáneo",
         54.99,
         "/wide-leg-pants-urban.jpg",
         "pantalones",
@@ -106,7 +106,7 @@ export class Catalogo {
       new Producto(
         11,
         "Pantalón Chino",
-        "Pantalón chino clásico de corte moderno",
+        "Pantalón chino clásico de corte moderno versátil",
         52.99,
         "/modern-chino-pants.jpg",
         "pantalones",
@@ -114,19 +114,19 @@ export class Catalogo {
       new Producto(
         12,
         "Pantalón Deportivo",
-        "Pantalón deportivo con franjas laterales",
+        "Pantalón deportivo con franjas laterales de diseño",
         44.99,
         "/sport-track-pants.jpg",
         "pantalones",
       ),
     )
 
-    // Buzos
+    // Buzos (6 productos)
     this.productos.push(
       new Producto(
         13,
         "Buzo Purple Hood",
-        "Buzo con capucha morado de algodón suave",
+        "Buzo con capucha morado de algodón suave premium",
         69.99,
         "/purple-hoodie.png",
         "buzos",
@@ -134,17 +134,31 @@ export class Catalogo {
       new Producto(
         14,
         "Buzo Oversized Black",
-        "Buzo oversized negro estilo streetwear",
+        "Buzo oversized negro estilo streetwear exclusivo",
         74.99,
         "/oversized-black-hoodie.jpg",
         "buzos",
       ),
-      new Producto(15, "Buzo Zip-Up", "Buzo con cierre completo y bolsillos", 64.99, "/zip-up-hoodie.png", "buzos"),
-      new Producto(16, "Buzo Cropped", "Buzo corto de estilo moderno", 59.99, "/cropped-hoodie.png", "buzos"),
+      new Producto(
+        15,
+        "Buzo Zip-Up",
+        "Buzo con cierre completo y bolsillos laterales",
+        64.99,
+        "/zip-up-hoodie.jpg",
+        "buzos",
+      ),
+      new Producto(
+        16,
+        "Buzo Cropped",
+        "Buzo corto de estilo moderno y contemporáneo",
+        59.99,
+        "/cropped-hoodie.png",
+        "buzos",
+      ),
       new Producto(
         17,
         "Buzo Tech Fleece",
-        "Buzo de material tech fleece premium",
+        "Buzo de material tech fleece premium de alta calidad",
         79.99,
         "/tech-fleece-hoodie.png",
         "buzos",
@@ -152,20 +166,27 @@ export class Catalogo {
       new Producto(
         18,
         "Buzo Vintage Logo",
-        "Buzo con logo vintage bordado",
+        "Buzo con logo vintage bordado de la marca",
         67.99,
         "/vintage-logo-hoodie.jpg",
         "buzos",
       ),
     )
 
-    // Accesorios
+    // Accesorios (6 productos)
     this.productos.push(
-      new Producto(19, "Gorra Snapback", "Gorra snapback con logo bordado", 24.99, "/snapback-cap.jpg", "accesorios"),
+      new Producto(
+        19,
+        "Gorra Snapback",
+        "Gorra snapback con logo bordado de alta calidad",
+        24.99,
+        "/snapback-cap.jpg",
+        "accesorios",
+      ),
       new Producto(
         20,
         "Mochila Urban",
-        "Mochila urbana con compartimento para laptop",
+        'Mochila urbana con compartimento para laptop 15"',
         49.99,
         "/urban-backpack.png",
         "accesorios",
@@ -173,7 +194,7 @@ export class Catalogo {
       new Producto(
         21,
         "Gafas de Sol",
-        "Gafas de sol con protección UV",
+        "Gafas de sol con protección UV400 premium",
         34.99,
         "/stylish-sunglasses.png",
         "accesorios",
@@ -181,7 +202,7 @@ export class Catalogo {
       new Producto(
         22,
         "Cinturón Canvas",
-        "Cinturón de lona con hebilla metálica",
+        "Cinturón de lona con hebilla metálica resistente",
         19.99,
         "/canvas-belt.jpg",
         "accesorios",
@@ -189,12 +210,19 @@ export class Catalogo {
       new Producto(
         23,
         "Calcetines Pack",
-        "Pack de 3 pares de calcetines premium",
+        "Pack de 3 pares de calcetines premium de algodón",
         14.99,
         "/premium-socks-pack.jpg",
         "accesorios",
       ),
-      new Producto(24, "Beanie Winter", "Gorro de invierno de lana suave", 22.99, "/winter-beanie.jpg", "accesorios"),
+      new Producto(
+        24,
+        "Beanie Winter",
+        "Gorro de invierno de lana suave y cálida",
+        22.99,
+        "/winter-beanie.jpg",
+        "accesorios",
+      ),
     )
   }
 
