@@ -326,12 +326,44 @@ export class UI {
 
     console.log("Datos de login:", { correo, password })
     alert(
-      `¡Inicio de sesión exitoso!\n\nBienvenido de nuevo!\n\nEn producción, esto autenticará tu cuenta con Java + PHP + MySQL.`,
+      `¡Inicio de sesión exitoso!\n\nBienvenido de nuevo!\n\nEn producción, esto autenticará tu cuenta.`,
     )
 
     e.target.reset()
     this.ocultarModal("loginModal")
   }
+/**
+ * Muestra el nombre del usuario en el header
+ * @param {string} nombre
+ */
+mostrarNombreUsuario(nombre) {
+  const userGreeting = document.getElementById("userGreeting");
+  const userNameDisplay = document.getElementById("userNameDisplay");
+  const loginBtn = document.getElementById("loginBtn");
+
+  userGreeting.style.display = "inline";
+  userNameDisplay.textContent = nombre.split(" ")[0]; // Solo primer nombre
+  loginBtn.style.display = "none"; // Oculta el botón de login
+}
+
+/**
+ * Carga el carrito del usuario desde el backend
+ * @param {number} userId
+ */
+cargarCarritoUsuario(userId) {
+  // BACKEND CONNECTION POINT:
+  // Endpoint: GET /api/carrito/{userId}
+  // Ejemplo de respuesta: [{ idProducto, nombre, precio, cantidad }]
+
+  fetch(`http://localhost:8080/api/carrito/${userId}`)
+    .then(res => res.json())
+    .then(items => {
+      this.carrito.cargarDesdeBackend(items);
+      this.actualizarTodasLasCantidades();
+      document.getElementById("cartCount").textContent = this.carrito.obtenerTotalItems();
+    })
+    .catch(err => console.error("Error al cargar carrito del usuario:", err));
+}
 
   /**
    * Maneja el envío del formulario de contacto
@@ -351,7 +383,7 @@ export class UI {
 
     console.log("Mensaje de contacto:", { nombre, correo, mensaje })
     alert(
-      `¡Mensaje enviado exitosamente!\n\nGracias ${nombre}, te responderemos pronto.\n\nEn producción, esto enviará tu mensaje al equipo de soporte con Java + PHP + MySQL.`,
+      `¡Mensaje enviado exitosamente!\n\nGracias ${nombre}, te responderemos pronto.\n\nEn producción, esto enviará tu mensaje al equipo de soporte.`,
     )
 
     e.target.reset()

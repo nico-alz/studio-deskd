@@ -23,6 +23,10 @@
                 <a href="#contacto" class="nav-link" data-section="contacto">Contacto</a>
             </nav>
             <div class="header-actions">
+                <span id="userGreeting" class="user-greeting" style="display:none; margin-right: 10px;">
+                    ¡Hola, <strong id="userNameDisplay"></strong>!
+                </span>
+
                 <button class="icon-btn" id="loginBtn" title="Iniciar Sesión">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
@@ -254,5 +258,64 @@
     <script type="module" src="js/Catalogo.js"></script>
     <script type="module" src="js/UI.js"></script>
     <script type="module" src="js/app.js"></script>
+
+    <!--  Script para mostrar nombre de usuario y carrito -->
+    <script>
+      // Al cargar la página, verificamos si hay un usuario guardado
+      document.addEventListener("DOMContentLoaded", () => {
+        const usuario = localStorage.getItem("usuario");
+        const userGreeting = document.getElementById("userGreeting");
+        const userNameDisplay = document.getElementById("userNameDisplay");
+
+        if (usuario) {
+          userGreeting.style.display = "inline";
+          userNameDisplay.textContent = usuario;
+        }
+      });
+
+      // Al hacer clic en "Iniciar sesión"
+      document.getElementById("loginForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+        const correo = document.getElementById("loginCorreo").value;
+        const nombre = correo.split("@")[0]; // Usa la parte del correo como nombre
+        localStorage.setItem("usuario", nombre);
+
+        // Mostrar saludo en el header
+        document.getElementById("userGreeting").style.display = "inline";
+        document.getElementById("userNameDisplay").textContent = nombre;
+
+        // Cerrar el modal de login
+        document.getElementById("loginModal").style.display = "none";
+      });
+
+      // Mostrar productos del carrito guardado
+      const carritoGuardado = JSON.parse(localStorage.getItem("carrito")) || [];
+      document.getElementById("cartCount").textContent = carritoGuardado.length;
+
+      // Mostrar modal del carrito al hacer clic
+      document.getElementById("cartBtn").addEventListener("click", () => {
+        const cartModal = document.getElementById("cartModal");
+        const cartItems = document.getElementById("cartItems");
+
+        if (carritoGuardado.length === 0) {
+          cartItems.innerHTML = "<p>Tu carrito está vacío.</p>";
+        } else {
+          cartItems.innerHTML = carritoGuardado
+            .map((item, index) => `<p>${index + 1}. ${item.nombre} - $${item.precio}</p>`)
+            .join("");
+        }
+
+        cartModal.style.display = "block";
+      });
+
+      // Botones de cerrar modales
+      document.getElementById("closeLogin").addEventListener("click", () => {
+        document.getElementById("loginModal").style.display = "none";
+      });
+
+      document.getElementById("closeCart").addEventListener("click", () => {
+        document.getElementById("cartModal").style.display = "none";
+      });
+    </script>
 </body>
 </html>
