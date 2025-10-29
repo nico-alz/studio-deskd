@@ -213,6 +213,32 @@
             </div>
         </div>
     </div>
+            <!-- Modal de Datos de Pago -->
+<div id="paymentModal" class="modal">
+  <div class="modal-content modal-payment">
+    <div class="modal-header">
+      <h2>Datos de Pago</h2>
+      <button class="close-btn" id="closePayment">&times;</button>
+</div>
+    <div class="modal-body">
+      <form id="paymentForm">
+        <div class="form-group">
+          <label for="cardNumber">Número de tarjeta</label>
+          <input type="text" id="cardNumber" maxlength="19" placeholder="1234 5678 9012 3456" required>
+        </div>
+        <div class="form-group">
+          <label for="cardExpiry">Fecha de expiración</label>
+          <input type="text" id="cardExpiry" maxlength="5" placeholder="MM/AA" required>
+        </div>
+        <div class="form-group">
+          <label for="cardCVC">CVC</label>
+          <input type="text" id="cardCVC" maxlength="4" placeholder="123" required>
+        </div>
+            <button type="submit" class="btn btn-primary">Pagar</button>
+            </form>
+        </div>
+    </div>
+</div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -307,7 +333,7 @@
 
         cartModal.style.display = "block";
       });
-
+      
       // Botones de cerrar modales
       document.getElementById("closeLogin").addEventListener("click", () => {
         document.getElementById("loginModal").style.display = "none";

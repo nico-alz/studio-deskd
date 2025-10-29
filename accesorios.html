@@ -32,5 +32,41 @@
   <script src="js/Catalogo.js"></script>
   <script src="js/UI.js"></script>
   <script src="js/app.js"></script>
+
+  <!-- ✅ Script para mantener el usuario y el carrito sincronizados -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Mostrar nombre del usuario si está guardado
+      const usuario = localStorage.getItem("usuario");
+      const header = document.querySelector(".header .container");
+
+      if (usuario) {
+        // Si no existe el contenedor de saludo, lo creamos
+        let saludo = document.getElementById("userGreeting");
+        if (!saludo) {
+          saludo = document.createElement("span");
+          saludo.id = "userGreeting";
+          saludo.textContent = `👋 ¡Hola, ${usuario}!`;
+          saludo.style.marginLeft = "15px";
+          saludo.style.fontWeight = "bold";
+          saludo.style.color = "#fff";
+          header.appendChild(saludo);
+        }
+      }
+
+      // Actualizar número de productos del carrito
+      const carritoGuardado = JSON.parse(localStorage.getItem("carrito")) || [];
+      const cartCount = document.getElementById("cartCount");
+      if (cartCount) cartCount.textContent = carritoGuardado.length;
+
+      // Mostrar modal del carrito (si usas el mismo sistema que en index)
+      const cartBtn = document.getElementById("cartBtn");
+      if (cartBtn) {
+        cartBtn.addEventListener("click", () => {
+          alert("Tu carrito tiene " + carritoGuardado.length + " productos guardados.");
+        });
+      }
+    });
+  </script>
 </body>
 </html>
